@@ -55,34 +55,50 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
     const parseRent = parseInt(rentInput);
     const parseClothes = parseInt(clothesInput);
     const expensesSum = parseFood + parseRent + parseClothes;
-    
-    if(foodInput < 0 || rentInput < 0 || clothesInput < 0){
+
+    if(incomeValue < expensesSum){
+        totalBalance.innerText = '000';
+        totalExpenses.innerText = '000';
+        expensesBalanceError.style.display = 'block';
+        negativeNumberError.style.display = 'none';
+        stringError.style.display = 'none';
+    }
+    else if(foodInput < 0 || rentInput < 0 || clothesInput < 0){
         totalBalance.innerText = '000';
         totalExpenses.innerText = '000';
         negativeNumberError.style.display = 'block';
         stringError.style.display = 'none';
+        expensesBalanceError.style.display = 'none';
     }
     else if(isNaN(expensesSum) || isNaN(incomeValue)){
         totalBalance.innerText = '000';
         totalExpenses.innerText = '000';
         stringError.style.display = 'block';
         negativeNumberError.style.display = 'none';
+        expensesBalanceError.style.display = 'none';
     }
     else{
         balanceCalculation(expensesSum, incomeValue);
         negativeNumberError.style.display = 'none';
         stringError.style.display = 'none';
-    }
-    
+        expensesBalanceError.style.display = 'none';
+    }  
 });
 
 // Event listener for save button 
 document.getElementById('save-btn').addEventListener('click', function () {
-    // savingAmount();
-    const balanceRemaining = remainingBalance();
-    const parseReamingBalance = parseInt(balanceRemaining);
+    const totalBalance = document.getElementById('balance').innerText;
+    const parseTotal = parseInt(totalBalance);
 
-    if(parseReamingBalance < 0){
-        remainingBalanceError.style.display = 'block';
+    const savingFunc = savingAmount();
+    const parseSaving = parseInt(savingFunc.innerText);
+    
+    if(parseTotal < parseSaving){
+        return remainingBalanceError.style.display = 'block';
+    }
+    else{
+        savingAmount();
+        remainingBalance();
+        remainingBalanceError.style.display = 'none';
     }
 });
