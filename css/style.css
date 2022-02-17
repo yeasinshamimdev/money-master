@@ -5,3 +5,9 @@
 .negative-number{
     display: none;
 }
+.remaining-balance-error{
+    display: none;
+}
+.expenses-balance-error{
+    display: none;
+}

@@ -1,24 +1,14 @@
 // Error Handel 
 const stringError = document.getElementById('error');
 const negativeNumberError = document.getElementById('negative-number-error');
+const remainingBalanceError = document.getElementById('remaining-error');
+const expensesBalanceError = document.getElementById('expenses-error');
 
 // Income function
 function income() {
     const incomeInput = document.getElementById('income').value;
     const parseIncome = parseFloat(incomeInput);
     return parseIncome;
-}
-
-// Expenses function
-function expensesCalculate(){
-    const foodInput = document.getElementById('food').value;
-    const rentInput = document.getElementById('rent').value;
-    const clothesInput = document.getElementById('clothes').value;
-    const parseFood = parseInt(foodInput);
-    const parseRent = parseInt(rentInput);
-    const parseClothes = parseInt(clothesInput);
-    const expensesSum = parseFood + parseRent + parseClothes;
-    return expensesSum;
 }
 
 // Balance function
@@ -55,10 +45,16 @@ function remainingBalance() {
 // Event listener for calculate button 
 document.getElementById('calculate-btn').addEventListener('click', function () {
     const incomeValue = income();
-    const expensesSumCalculation = expensesCalculate();
-
     const totalExpenses = document.getElementById('total-expenses');
     const totalBalance = document.getElementById('balance');
+
+    const foodInput = document.getElementById('food').value;
+    const rentInput = document.getElementById('rent').value;
+    const clothesInput = document.getElementById('clothes').value;
+    const parseFood = parseInt(foodInput);
+    const parseRent = parseInt(rentInput);
+    const parseClothes = parseInt(clothesInput);
+    const expensesSum = parseFood + parseRent + parseClothes;
     
     if(foodInput < 0 || rentInput < 0 || clothesInput < 0){
         totalBalance.innerText = '000';
@@ -66,14 +62,14 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
         negativeNumberError.style.display = 'block';
         stringError.style.display = 'none';
     }
-    else if(isNaN(expensesSumCalculation) || isNaN(incomeValue)){
+    else if(isNaN(expensesSum) || isNaN(incomeValue)){
         totalBalance.innerText = '000';
         totalExpenses.innerText = '000';
         stringError.style.display = 'block';
         negativeNumberError.style.display = 'none';
     }
     else{
-        balanceCalculation(expensesSumCalculation, incomeValue);
+        balanceCalculation(expensesSum, incomeValue);
         negativeNumberError.style.display = 'none';
         stringError.style.display = 'none';
     }
@@ -82,6 +78,11 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
 
 // Event listener for save button 
 document.getElementById('save-btn').addEventListener('click', function () {
-    savingAmount();
-    remainingBalance();
+    // savingAmount();
+    const balanceRemaining = remainingBalance();
+    const parseReamingBalance = parseInt(balanceRemaining);
+
+    if(parseReamingBalance < 0){
+        remainingBalanceError.style.display = 'block';
+    }
 });
