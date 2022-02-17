@@ -1,8 +1,6 @@
 // Error Handel 
 const stringError = document.getElementById('error');
 const negativeNumberError = document.getElementById('negative-number-error');
-const showStringError = stringError.style.display = 'block';
-const showNegativeError = negativeNumberError.style.display = 'block';
 
 // Income function
 function income() {
@@ -12,34 +10,24 @@ function income() {
 }
 
 // Expenses function
-function expensesCalculation() {
+function expensesCalculate(){
     const foodInput = document.getElementById('food').value;
     const rentInput = document.getElementById('rent').value;
     const clothesInput = document.getElementById('clothes').value;
     const parseFood = parseInt(foodInput);
     const parseRent = parseInt(rentInput);
     const parseClothes = parseInt(clothesInput);
-    if (foodInput < 0 || rentInput < 0 || clothesInput < 0) {
-        negativeNumberError.style.display = 'block';
-        stringError.style.display = 'none';
-    }
-    else if (parseFood != 'number' || parseRent != 'number' || parseClothes != 'number') {
-        stringError.style.display = 'block';
-        negativeNumberError.style.display = 'none';
-    }
-    else {
-        const expensesSum = parseFood + parseRent + parseClothes;
-        return expensesSum;
-    }
+    const expensesSum = parseFood + parseRent + parseClothes;
+    return expensesSum;
 }
 
 // Balance function
-function balanceCalculation() {
+function balanceCalculation(expensesCalculate, incomeValue) {
     const totalExpenses = document.getElementById('total-expenses');
     const totalBalance = document.getElementById('balance');
-    const totalExpensesOutput = expensesCalculation();
-    const totalBalanceOutput = income() - totalExpensesOutput;
-    totalExpenses.innerText = totalExpensesOutput;
+    const totalBalanceOutput = incomeValue - expensesCalculate;
+    
+    totalExpenses.innerText = expensesCalculate;
     totalBalance.innerText = totalBalanceOutput;
 }
 
@@ -66,7 +54,30 @@ function remainingBalance() {
 
 // Event listener for calculate button 
 document.getElementById('calculate-btn').addEventListener('click', function () {
-    balanceCalculation();
+    const incomeValue = income();
+    const expensesSumCalculation = expensesCalculate();
+
+    const totalExpenses = document.getElementById('total-expenses');
+    const totalBalance = document.getElementById('balance');
+    
+    if(foodInput < 0 || rentInput < 0 || clothesInput < 0){
+        totalBalance.innerText = '000';
+        totalExpenses.innerText = '000';
+        negativeNumberError.style.display = 'block';
+        stringError.style.display = 'none';
+    }
+    else if(isNaN(expensesSumCalculation) || isNaN(incomeValue)){
+        totalBalance.innerText = '000';
+        totalExpenses.innerText = '000';
+        stringError.style.display = 'block';
+        negativeNumberError.style.display = 'none';
+    }
+    else{
+        balanceCalculation(expensesSumCalculation, incomeValue);
+        negativeNumberError.style.display = 'none';
+        stringError.style.display = 'none';
+    }
+    
 });
 
 // Event listener for save button 

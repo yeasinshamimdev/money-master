@@ -1,21 +1,19 @@
 document.getElementById('calculate-btn').addEventListener('click', function () {
-    const incomeInput = document.getElementById('income');
-    const parseIncome = parseFloat(incomeInput.value);
+    const incomeInput = document.getElementById('income').value;
+    const parseIncome = parseFloat(incomeInput);
 
-    const foodInput = document.getElementById('food');
-    const rentInput = document.getElementById('rent');
-    const clothesInput = document.getElementById('clothes');
-    const parseFood = parseFloat(foodInput.value);
-    const parseRent = parseFloat(rentInput.value);
-    const parseClothes = parseFloat(clothesInput.value);
+    const foodInput = document.getElementById('food').value;
+    const rentInput = document.getElementById('rent').value;
+    const clothesInput = document.getElementById('clothes').value;
+    const parseFood = parseInt(foodInput);
+    const parseRent = parseInt(rentInput);
+    const parseClothes = parseInt(clothesInput);
     const expensesSum = parseFood + parseRent + parseClothes;
 
     const balance = parseIncome - expensesSum;
 
     const totalExpenses = document.getElementById('total-expenses');
-    const totalBalance = document.getElementById('balance');
-    totalExpenses.innerText = expensesSum;
-    totalBalance.innerText = balance;
+    const totalBalance = document.getElementById('balance'); 
 });
 
 // Event listener for save button 
