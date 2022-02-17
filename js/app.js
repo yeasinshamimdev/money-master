@@ -1,4 +1,4 @@
-// Error Handel 
+// Common Error Handel Id
 const stringError = document.getElementById('error');
 const negativeNumberError = document.getElementById('negative-number-error');
 const remainingBalanceError = document.getElementById('remaining-error');
@@ -48,6 +48,7 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
     const totalExpenses = document.getElementById('total-expenses');
     const totalBalance = document.getElementById('balance');
 
+    // Expenses Input Value
     const foodInput = document.getElementById('food').value;
     const rentInput = document.getElementById('rent').value;
     const clothesInput = document.getElementById('clothes').value;
@@ -56,6 +57,7 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
     const parseClothes = parseInt(clothesInput);
     const expensesSum = parseFood + parseRent + parseClothes;
 
+    // validation check start
     if(incomeValue < expensesSum){
         totalBalance.innerText = '000';
         totalExpenses.innerText = '000';
@@ -93,8 +95,11 @@ document.getElementById('save-btn').addEventListener('click', function () {
     const savingFunc = savingAmount();
     const parseSaving = parseInt(savingFunc.innerText);
     
+    // validation check start here
     if(parseTotal < parseSaving){
-        return remainingBalanceError.style.display = 'block';
+        remainingBalanceError.style.display = 'block';
+        document.getElementById('remaining-balance').innerText = '000';
+        document.getElementById('saving-amount').innerText = '000';
     }
     else{
         savingAmount();

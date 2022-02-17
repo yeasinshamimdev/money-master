@@ -1,13 +1,17 @@
-/* Error handling  */
+/* Error handling style */
 .error-handling{
     display: none;
+    padding: 5px;
 }
 .negative-number{
     display: none;
+    padding: 5px;
 }
 .remaining-balance-error{
     display: none;
+    padding: 5px;
 }
 .expenses-balance-error{
     display: none;
+    padding: 5px;
 }
