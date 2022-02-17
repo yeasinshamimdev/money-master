@@ -1,34 +1,50 @@
+// Error Handel 
+const stringError = document.getElementById('error');
+const negativeNumberError = document.getElementById('negative-number-error');
+const showStringError = stringError.style.display = 'block';
+const showNegativeError = negativeNumberError.style.display = 'block';
+
 // Income function
-function income(){
-    const incomeInput = document.getElementById('income');
-    const parseIncome = parseFloat(incomeInput.value);
+function income() {
+    const incomeInput = document.getElementById('income').value;
+    const parseIncome = parseFloat(incomeInput);
     return parseIncome;
 }
 
 // Expenses function
-function expenses(){
-    const foodInput = document.getElementById('food');
-    const rentInput = document.getElementById('rent');
-    const clothesInput = document.getElementById('clothes');
-    const parseFood = parseFloat(foodInput.value);
-    const parseRent = parseFloat(rentInput.value);
-    const parseClothes = parseFloat(clothesInput.value);
-    const sum = parseFood + parseRent + parseClothes;
-    return sum;
+function expensesCalculation() {
+    const foodInput = document.getElementById('food').value;
+    const rentInput = document.getElementById('rent').value;
+    const clothesInput = document.getElementById('clothes').value;
+    const parseFood = parseInt(foodInput);
+    const parseRent = parseInt(rentInput);
+    const parseClothes = parseInt(clothesInput);
+    if (foodInput < 0 || rentInput < 0 || clothesInput < 0) {
+        negativeNumberError.style.display = 'block';
+        stringError.style.display = 'none';
+    }
+    else if (parseFood != 'number' || parseRent != 'number' || parseClothes != 'number') {
+        stringError.style.display = 'block';
+        negativeNumberError.style.display = 'none';
+    }
+    else {
+        const expensesSum = parseFood + parseRent + parseClothes;
+        return expensesSum;
+    }
 }
 
 // Balance function
-function balance(){
+function balanceCalculation() {
     const totalExpenses = document.getElementById('total-expenses');
     const totalBalance = document.getElementById('balance');
-    const totalExpensesOutput = expenses();
+    const totalExpensesOutput = expensesCalculation();
     const totalBalanceOutput = income() - totalExpensesOutput;
     totalExpenses.innerText = totalExpensesOutput;
     totalBalance.innerText = totalBalanceOutput;
 }
 
-// Remaining Balance function
-function savingAmount(){
+// Saving Amount function
+function savingAmount() {
     const savingInput = document.getElementById('save-input');
     const savingAmountText = document.getElementById('saving-amount');
     const parseSavingInput = parseFloat(savingInput.value);
@@ -39,7 +55,7 @@ function savingAmount(){
 }
 
 // Remaining Balance function
-function remainingBalance(){
+function remainingBalance() {
     const totalBalance = document.getElementById('balance').innerText;
     const remainingBalanceId = document.getElementById('remaining-balance');
     const parseTotalBalance = parseFloat(totalBalance);
@@ -49,12 +65,12 @@ function remainingBalance(){
 }
 
 // Event listener for calculate button 
-document.getElementById('calculate-btn').addEventListener('click', function(){
-    balance();
+document.getElementById('calculate-btn').addEventListener('click', function () {
+    balanceCalculation();
 });
 
 // Event listener for save button 
-document.getElementById('save-btn').addEventListener('click', function(){
+document.getElementById('save-btn').addEventListener('click', function () {
     savingAmount();
     remainingBalance();
 });

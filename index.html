@@ -23,11 +23,11 @@
         <section class="container">
             <div class="row">
                 <!-- money image section  -->
-                <div class="col g-5">
+                <div class="col-lg-6 col-md-12 g-5">
                     <img class="img-fluid" src="img/money.jpg" alt="Money images">
                 </div>
                 <!-- money calculation form  -->
-                <div class="col bg-light g-5">
+                <div class="col-lg-6 col-md-12 bg-light g-5">
                     <div class="text-center">
                         <h4>Income</h4>
                         <p>Income: <input id="income" type="text" value="10000"></p>
@@ -35,8 +35,11 @@
                         <p>Food: <input id="food" type="text"></p>
                         <p>Rent: <input id="rent" type="text"></p>
                         <p>Clothes: <input id="clothes" type="text"></p>
-                        <p id="error" class="error-handling">Your given input is not a number! Please type a number.</p>
+
+                        <p id="negative-number-error" class="negative-number bg-danger text-light">Number can't be a negative. Please type a positive number.</p>
+                        <p id="error" class="error-handling bg-danger text-light">Your given input is not a number! Please type a number.</p>
                         <button class="btn btn-primary" id="calculate-btn">Calculate</button>
+                        
                         <h3>Total Expenses: <span id="total-expenses">00</span></h3>
                         <h3>Balance: <span id="balance">00</span></h3>
                         <p>Save: <input id="save-input" type="text"> % <button class="btn btn-primary" id="save-btn">Save</button></p>
@@ -48,10 +51,6 @@
         </section>
     </main>
 
-    <!-- Bootstrap Script link  -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
     <!-- custom script link  -->
     <script src="js/app.js"></script>
 </body>
